@@ -1,0 +1,36 @@
+INSTALLATION NOTES
+
+--- DJANGO PROJECT SETUP ---
+
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+
+sudo python3 get-pip.py
+
+pip install django
+	verifiy: python3 -m django version
+
+django-admin startproject discurso
+
+--- users ---
+
+django-admin startapp users
+
+python manage.py createsuperuser
+... to create an admin user
+
+- settings.py added 'users.apps.UsersConfig' to the INSTALLED_APPS list
+
+python3 manage.py makemigrations users
+
+ref: https://docs.djangoproject.com/en/2.2/ref/models/fields/
+
+python manage.py makemigrations --name Post msgboard
+                                       ^    ^ app name  
+                                       | object you're trying to migrate
+python manage.py migrate <- apply the migration
+
+
+
+
+
+https://simpleisbetterthancomplex.com/tutorial/2018/08/13/how-to-use-bootstrap-4-forms-with-django.html

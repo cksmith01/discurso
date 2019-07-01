@@ -1,0 +1,298 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	{% if title %}
+		<title>{{ title }}</title>
+	{% else %}
+		<title>Home Page</title>
+	{% endif %}
+
+	<meta charset="UTF-8">
+  <meta name="description" content="discurso forum application">
+  <meta name="keywords" content="HTML,CSS,XML,JavaScript">
+  <meta name="author" content="CK Smith">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Changa:800" rel="stylesheet">
+	<!-- <link href="https://fonts.googleapis.com/css?family=Changa:200,300,400,500,600,700,800" rel="stylesheet"> -->
+
+	<style type="text/css">
+		/* @import url('https://fonts.googleapis.com/css?family=Changa:800'); */
+		/* ... global styling ... */
+		html, body {
+			margin: 0;
+			padding: 0;
+			background-color: #fff;
+			height: 100%;
+			/*overflow: hidden;*/
+			overflow-y: auto;
+		}
+
+		a {
+			color: blue;
+			text-decoration: none;
+		}
+
+		a:hover {
+			color: green;
+			text-decoration: none;
+		}
+		
+		/* ... basic structure ... */
+		header {
+			/*border: 1px orange solid;*/
+			width: 100%
+			margin: 0;
+			padding: 10pt 10pt 10pt 10pt;
+			background-color: #666;
+			text-align: right;
+			height: 20px;
+		}
+		header a {
+			color: #ccc;
+			text-transform: uppercase;
+		}
+		header a:hover {
+			color: #fff;
+			text-decoration: none;
+		}
+
+		section {
+			/*border: 1px blue solid;*/
+			/*background-color: #fff;*/
+			float: left;
+			margin-top: 20pt;
+			padding: 10pt;
+			width: 75%;
+			height: calc(100vh - (20px + 20px)); 
+		}
+
+		section .title {
+			font-size: 180%;
+		}
+
+		aside .title {
+			background-color: #666;
+			color: #eee;
+			font-size: 140%;
+			padding: 10pt 10pt;
+			margin-bottom: 10pt;
+			text-align: center;
+		}
+
+		aside a {
+			text-decoration: none;
+			color: #555;
+		}
+
+		aside {
+			/*border: 1px green solid;*/
+			float: right;
+			margin-top: 20pt;
+			padding: 0pt;
+			width: 25%;
+			height: calc(100vh - (20px + 20px)); 
+			background-color: #ddd;
+		}
+
+		footer {
+			color: #eee;
+			font-size: 8pt;
+			position:absolute;
+			bottom:0;
+			width:100%;
+			height:20px;   /* Height of the footer */
+			background:#444;
+			padding: 2pt 2pt 2pt 2pt;
+		}
+		footer a {
+			color: #ccc;
+		}
+		footer a:hover {
+			color: #fff;
+			text-decoration: none;
+		}
+		/* ... custom stuff ... */
+		.navBar {
+			/*border: 1px orange solid;*/
+			overflow: hidden;
+			background-color: #333;
+			position: fixed;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 56px;
+		}
+
+		.navLogo {
+			/*border: 1px yellow solid;*/
+			text-align: left;
+			position: fixed;
+			float: left;
+			width: 50%;
+			font-size: 300%;
+			font-weight: bold;
+			font-style: italic;
+			font-family: 'Changa', sans-serif;
+			color: #666;
+			margin: -6px 0px 0px 40px;
+			z-index: -1;
+		}
+		.navigation {
+		  /*border: 1px pink solid;*/
+		  flex-flow: column;
+		  text-align: right;
+		  float: right;
+		  margin: 0px 10px -2px 0px;
+		}
+		.navigation li {
+		  display: inline-block;
+		}
+		.navigation li a {
+		  /*border: 1px yellow solid;*/
+		  float: left;
+		  display: block;
+		  color: #ccc;
+		  text-align: center;
+		  padding: 15px 15px;
+		  text-decoration: none;
+		  font-size: 17px;
+		  /*font-weight: bold;*/
+		}
+		.navigation li a:hover {
+		  background: #fff;
+		  color: #333;
+		}
+
+		.clearfix {
+		  overflow: auto;
+		}
+
+		.title {
+			font-style: italic;
+			color: #999;
+			font-weight: bold;
+		}
+		/* ... form elements ... */
+		label {
+		  font-weight: bold;
+		}
+		input {
+		  border-radius: 4px;
+		  background-color: #fff;
+		  font-family: sans-serif;
+		  font-size: 10pt;
+		  margin: 10pt;
+		  border:1px solid #ccc;
+		  padding: 2px;
+			width: 300px;
+		}
+		input:hover {
+		  box-shadow: 1px 1px rgba(0,0,0,0.2);
+		  background-color: #ffffee;
+		  border:1px solid #999;
+		  color: #000;
+		}
+		textarea {
+		  border-radius: 4px;
+		  font-family: sans-serif;
+		  font-size: 10pt;
+		  margin: 10pt;
+		  border:1px solid #ccc;
+		}
+		textarea:hover {
+		  box-shadow: 1px 1px rgba(0,0,0,0.2);
+		  background-color: #ffffee;
+		  border:1px solid #999;
+		  color: #000;
+		}
+		button {
+		  color: #666;
+		  margin: 5pt 5pt 5pt 5pt;
+		  border-radius: 5px;
+		  padding: 7px 35px;
+		  font-family: sans-serif;
+		  font-size: 10pt;
+		  font-weight: bold;
+		  cursor: pointer;
+		  background-image: linear-gradient(#fff, #eee, #ddd);
+		}
+		button:hover {
+		  box-shadow: 1px 1px rgba(0,0,0,0.2);
+		  border-color: #999;
+		  color: #000;
+		}
+		fieldset {
+		  border: 0px;
+		}
+		input, label {
+		  margin: 5pt;
+		  padding: 5pt;
+		  display:block;
+		}
+		textarea, label {
+		  margin: 5pt;
+		  padding: 5pt;
+		  display:block;
+		}
+
+	</style>
+</head>
+<body>
+
+	<header>
+		<div class="navBar">
+			<div class="navLogo">
+				discurso
+			</div>
+			<div class="navigation">
+				<ul>
+					<li class="list-inline-item"><a href="{% url 'msgboard-home' %}">Home</a></li>
+					<li class="list-inline-item"><a href="{% url 'msgboard-about' %}">About</a></li>
+					<li class="list-inline-item"><a href="{% url 'msgboard-contact' %}">Contact</a></li>
+				</ul>
+
+			</div>
+		</div>
+	</header>
+
+	<section>
+		{% if messages %}
+    		{% for msg in messages %}
+    			<div class="alert alert-{{ messages.tags }}">{{ msg }}</div>
+    		{% endfor %}
+    	{% endif %}
+      {% block content %}
+      {% endblock %}
+	</section>
+
+	<aside>
+		<div class="title">Aside</div>
+		<ul>
+				{% if user.is_authenticated %}
+					<li><a href="{% url 'profile' %}">Profile</a></li>
+					<li><a href="{% url 'logout' %}">Log Out</a></li>
+					<li><a href="{% url 'msgboard-post-create' %}">Create Post</a></li>
+			{% else %}
+				<li><a href="{% url 'login' %}">Login</a></li>
+				<li><a href="{% url 'register' %}">Register</a></li>
+			{% endif %}
+			<!-- <li><a href="{ % url 'admin-home' % }">Administration Pages</a></li> -->
+		</ul>
+	</aside>
+
+	<footer>
+		<div style="float: left;width:50%">
+			&copy; 2019 CKSmith
+		</div>
+		<div style="float: right;text-align: right;width:50%">
+			<!-- <a target="_blank" href="https://hackerthemes.com/bootstrap-cheatsheet">Bootstrap 4 Cheat Sheet</a> -->
+			<a target="_blank" href="https://html.com/blog/html-5-cheat-sheets/">HTML 5 Cheat Sheets</a>
+		</div>		
+	</footer>
+
+	<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{% extends "msgboard/base.html" %}
+{% block content %}
+	<div class="title">Contact Us</div>
+	<fieldset>
+		<form method="POST" action="{% url 'msgboard-contact-send' %}">
+			{% csrf_token %}
+			<label for="name">Name</label>
+			<input type="text" name="name" id="name">
+			<label for="email">Email</label>
+			<input type="text" name="email" id="email">
+			<label for="comments">What's on your mind?</label>
+			<textarea name="comments" id="comments" cols="70" rows="7"></textarea>
+			<button type="submit">Send</button>
+		</form>
+	</fieldset>
+{% endblock %}
